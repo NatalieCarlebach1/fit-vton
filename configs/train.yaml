@@ -1,0 +1,56 @@
+# FIT-VTON Training Configuration
+
+# Model
+model:
+  base_model_id: "yisol/IDM-VTON"
+  adapter_scale: 1.0
+  num_fit_tokens: 4
+  measurement_embed_dim: 768
+  measurement_hidden_dim: 512
+  num_garment_sizes: 6
+
+# Data
+data:
+  data_dir: "data/fit_dataset"
+  train_split: "train"
+  val_split: "val"
+  image_size: 512
+  num_workers: 4
+  pin_memory: true
+
+# Training
+training:
+  output_dir: "outputs"
+  num_train_steps: 100000
+  warmup_steps: 500
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 1.0e-4
+  lr_scheduler: "cosine"
+  weight_decay: 1.0e-2
+  max_grad_norm: 1.0
+  mixed_precision: "fp16"
+  seed: 42
+
+  # Checkpointing
+  save_every_n_steps: 5000
+  log_every_n_steps: 100
+  sample_every_n_steps: 1000
+  num_val_samples: 4
+  resume_from_checkpoint: null
+
+# Logging
+logging:
+  project_name: "fit-vton"
+  run_name: "fit-adapter-v1"
+  use_wandb: true
+  log_images: true
+
+# Noise scheduler
+noise_scheduler:
+  num_train_timesteps: 1000
+  beta_start: 0.00085
+  beta_end: 0.012
+  beta_schedule: "scaled_linear"
+  clip_sample: false
+  prediction_type: "epsilon"

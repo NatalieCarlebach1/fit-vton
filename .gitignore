@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# data & models (too large for git)
+/data/
+cache/
+outputs/
+checkpoints/
+*.safetensors
+*.bin
+*.ckpt
+*.pt
+*.pth
+*.pkl
+
+# notebooks
+.ipynb_checkpoints/
+
+# env
+.env
+*.log
+wandb/
+
+# OS
+.DS_Store
+Thumbs.db
